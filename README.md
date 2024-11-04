@@ -15,6 +15,7 @@
 - **Limitări**: Consum mare de resurse, potrivit pentru aplicații care au o sursă constantă de energie, dar nu pentru dispozitive IoT pe baterie.
 - **Lățime de bandă**: Mare, protocolul are un overhead semnificativ datorită structurii textuale și a anteturilor detaliate.
 - **Rată de transfer**: Limitată la performanța TCP, HTTP nu oferă mecanisme QoS și poate deveni ineficient în rețele congestionate.
+![MQTT](HTTPvsMQTT.png)
 
 ## 3. CoAP (Constrained Application Protocol)
 - **Latență**: Foarte scăzută, CoAP utilizează UDP, reducând latența față de HTTP.
@@ -22,11 +23,16 @@
 - **Lățime de bandă**: Foarte redusă, CoAP are overhead scăzut datorită unui header binar compact și este potrivit pentru rețelele cu lățime de bandă limitată.
 - **Rată de transfer**: Mică, deoarece utilizează UDP și nu suportă transferuri mari de date. Include un mecanism de tip „Observe” pentru actualizări periodice.
 
+![MQTT](CoAPvsMQTT.png)
+
 ## 4. AMQP (Advanced Message Queuing Protocol)
 - **Latență**: Medie, AMQP folosește TCP, iar conexiunile necesită timp pentru inițiere.
 - **Limitări**: Overhead mare, necesită un broker și este mai potrivit pentru aplicațiile cu cerințe de securitate și fiabilitate ridicate.
 - **Lățime de bandă**: Medie spre mare, având overhead suplimentar din cauza mecanismelor de rutare complexe.
 - **Rată de transfer**: Adaptabilă la nivel de rețea, poate garanta QoS pentru fiecare mesaj și suportă diferite tipuri de exchange-uri, precum Direct și Fanout.
+
+  ![MQTT](AMQP.png)
+  ![MQTT](AMQPvsCoAPvsMQTT.png)
 
 ## 5. DDS (Data Distribution Service)
 - **Latență**: Foarte scăzută, DDS este optimizat pentru aplicații real-time, critice.
@@ -34,15 +40,15 @@
 - **Lățime de bandă**: Variabilă, în funcție de setările QoS; poate fi eficient pentru rețele cu cerințe mari de date.
 - **Rată de transfer**: Mare, permite distribuirea rapidă a datelor în timp real prin modelul Publisher-Subscriber.
 
+  ![MQTT](DDS.png)
+
 ## 6. XMPP (Extensible Messaging and Presence Protocol)
 - **Latență**: Medie, depinde de conexiunea TCP și de stările de prezență.
 - **Limitări**: Proiectat pentru mesagerie în timp real, XMPP folosește XML pentru a structura datele, ceea ce crește overhead-ul.
 - **Lățime de bandă**: Mare, datorită formatului XML și conexiunilor TCP persistente.
 - **Rată de transfer**: Variază în funcție de rețea, dar este potrivit pentru aplicații IoT care necesită interacțiuni în timp real și raportare de stare.
 
-Aceste protocoale sunt alese în funcție de specificul fiecărei aplicații IoT, echilibrând cerințele de latență, lățime de bandă și securitate.
-
----
+ ![MQTT](XMPP.png)
 
 # CURS 3
 
@@ -53,12 +59,16 @@ Aceste protocoale sunt alese în funcție de specificul fiecărei aplicații IoT
 - **Frecvență de operare**: 2.4 GHz (la nivel global), 868 MHz în Europa, 915 MHz în SUA.
 - **Rată de transfer**: Maxim 250 kbps, suficientă pentru aplicații cu transmisie de date redusă.
 
+![MQTT](ZigbeeArch.png)
+
 ## 2. Bluetooth Low Energy (BLE)
 - **Latență**: Foarte mică, potrivită pentru aplicații ce necesită transmisie intermitentă.
 - **Limitări**: Distanța maximă de conectare este de aproximativ 100 m; nu este ideal pentru transferuri mari de date.
 - **Lățime de bandă**: Relativ mică, cu scopul de a reduce consumul energetic.
 - **Frecvență de operare**: Banda ISM de 2.4 GHz.
 - **Rată de transfer**: Până la 2 Mbps, cu rate mai mici utilizate pentru economisirea energiei.
+
+![MQTT](Screenshot 2024-11-03 153335.png)
 
 ## 3. Z-Wave
 - **Latență**: Mică, concepută pentru automatizări casnice.
@@ -81,6 +91,8 @@ Aceste protocoale sunt alese în funcție de specificul fiecărei aplicații IoT
 - **Frecvență de operare**: Utilizează frecvențe fără licență în banda ISM, care diferă pe regiuni (ex: 868 MHz în Europa).
 - **Rată de transfer**: Scăzută, dar potrivită pentru aplicații pe distanțe mari (2-15 km) cum sunt monitorizările de mediu.
 
+![MQTT](LORAWANArch.png)
+
 ## 6. Sigfox
 - **Latență**: Ridicată, potrivită pentru transmisii ocazionale de date mici.
 - **Limitări**: Suportă mesaje foarte scurte (12 bytes uplink, 8 bytes downlink).
@@ -88,14 +100,16 @@ Aceste protocoale sunt alese în funcție de specificul fiecărei aplicații IoT
 - **Frecvență de operare**: Folosește spectrul ISM cu ultra-narrowband (UNB).
 - **Rată de transfer**: Foarte mică, optimizată pentru transmisii de date mici la distanțe mari (10-50 km).
 
+![MQTT](SigfoxvsLORAWAN.png)
+
 ## 7. NB-IoT (Narrowband IoT)
 - **Latență**: Medie spre mare, datorită tehnologiei LPWAN.
-- **Limitări**: Proiectat pentru aplicații de date mici și dispozitive statice; nu este potrivit
-
- pentru comunicații de voce.
+- **Limitări**: Proiectat pentru aplicații de date mici și dispozitive statice; nu este potrivit pentru comunicații de voce.
 - **Lățime de bandă**: Foarte mică, utilizând o bandă de 180 kHz.
 - **Frecvență de operare**: Folosește spectrul LTE (stand-alone, in-band și guard-band).
 - **Rată de transfer**: Mică, dar suportă până la 100.000 de dispozitive per celulă.
+
+![MQTT](NB-IOT.png)
 
 ## 8. LTE-M (Long Term Evolution for Machines)
 - **Latență**: Foarte mică, potrivită pentru aplicații IoT avansate.
@@ -103,6 +117,9 @@ Aceste protocoale sunt alese în funcție de specificul fiecărei aplicații IoT
 - **Lățime de bandă**: Medie, asigură transferuri de date frecvente și suport pentru aplicații de voce.
 - **Frecvență de operare**: Folosește spectrul LTE.
 - **Rată de transfer**: Mai mare decât la NB-IoT, permițând o gamă largă de aplicații, inclusiv monitorizarea sănătății și vehicule conectate.
+  ![MQTT](LTE-M.png)
+
+  ![MQTT](NB-IOTvsLTE-M.png)
 
 
 # CURS 4
