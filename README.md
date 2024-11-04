@@ -7,7 +7,7 @@
 - **Frecvență de operare**: Poate funcționa pe TCP/IP, utilizat în mod obișnuit pentru aplicații de monitorizare și telemetrie.
 - **Rată de transfer**: Depinde de conexiunea rețelei și poate susține QoS la trei niveluri (0 - cel mult o dată, 1 - cel puțin o dată, 2 - exact o dată) pentru a asigura fiabilitatea mesajelor.
 
-![MQTT]()
+![MQTT](MQTT.png)
 
 
 ## 2. HTTP (Hypertext Transfer Protocol)
